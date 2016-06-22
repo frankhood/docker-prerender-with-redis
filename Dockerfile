@@ -12,4 +12,4 @@ RUN git clone https://github.com/fuww/prerender.git /prerender
 RUN cd /prerender; npm install
 
 EXPOSE  3000
-CMD ["node", "/prerender/server.js"]
+CMD node /prerender/server.js
