@@ -1,15 +1,13 @@
-FROM node
+FROM node:latest
 
-RUN echo deb http://ftp.fr.debian.org/debian/ jessie main contrib non-free > /etc/apt/source.list
+ENV NODE_ENV=production
 
-RUN apt-get update -y
+RUN mkdir /prerender \
+  && wget https://github.com/fuww/prerender/archive/master.tar.gz -O - | \
+    tar --strip-components 1 -xzC /prerender
+WORKDIR /prerender
 
-RUN apt-get install -y \
-    python2.7 python-pip \
-    libfreetype6 libfontconfig
+RUN npm install
 
-RUN git clone https://github.com/fuww/prerender.git /prerender
-RUN cd /prerender; npm install
-
-EXPOSE  3000
-CMD node /prerender/server.js
+EXPOSE 3000
+CMD node server.js
