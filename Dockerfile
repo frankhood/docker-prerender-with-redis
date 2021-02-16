@@ -8,7 +8,7 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
   useradd -r -g prerender -G audio,video prerender && \
   mkdir -p /home/prerender/prerender && \
   chown -R prerender:prerender /home/prerender && \
-  wget https://github.com/fuww/prerender/archive/master.tar.gz -O - | \
+  wget https://github.com/frankhood/prerender/archive/chromeFlags-fix.tar.gz -O - | \
   tar --strip-components 1 -xzC /home/prerender/prerender && \
   rm -rf /var/lib/apt/lists/*
 
